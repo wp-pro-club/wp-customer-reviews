@@ -337,6 +337,10 @@ class WPCustomerReviews3 {
 			if ($this->options['standard_fields']['fname']['show'] == 0 || $review[$this->prefix.'_review_name'] == '') {
 				$review[$this->prefix.'_review_name'] = 'Anonymous';
 			}
+
+			if (has_post_thumbnail($post->ID)) {
+				$review[$this->prefix.'_review_thumbnail'] = get_the_post_thumbnail($post->ID, 'thumbnail');
+			}
 			
 			if ($this->options['standard_fields']['ftitle']['show'] == 0) {
 				$review[$this->prefix.'_review_title'] = '';
@@ -491,6 +495,7 @@ class WPCustomerReviews3 {
 		$product_name = $this->get_meta_or_default($parentData, $this->prefix.'_product_name', $blog_name);
 		$parentData[$this->prefix.'_business_name'] = $business_name;
 		$parentData[$this->prefix.'_business_url'] = $blog_url;
+		$parentData[$this->prefix.'_price_range'] = $this->get_meta_or_default($parentData, $this->prefix.'_price_range', $blog_name);
 		$parentData[$this->prefix.'_product_name'] = $product_name;
 		
 		// todo: replace with provided image in future
@@ -926,7 +931,7 @@ class WPCustomerReviews3 {
 			$opts->on_postid = $posted->on_postid;
 			$rtn->output = $this->output_reviews_show($opts);
 		}
-		
+
 		$rtn->success = true;
 		die(json_encode($rtn));
 	}
@@ -1027,7 +1032,7 @@ class WPCustomerReviews3 {
 			'not_found' => 'No Reviews Found',
 			'not_found_in_trash' => 'No Reviews Found in Trash'
 		);
-		$defaults2['supports'] = array('title', 'editor');
+		$defaults2['supports'] = array('title', 'editor', 'thumbnail');
 		$err = register_post_type($this->prefix.'_review', $defaults2);
 	}
     

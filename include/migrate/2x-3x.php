@@ -168,6 +168,7 @@ function wpcr3_migrate_2x_3x(&$this2, $current_dbversion) {
 			update_post_meta($postid, 'wpcr3_business_country', $new->business_country);
 			update_post_meta($postid, 'wpcr3_business_phone', $new->business_phone);
 			update_post_meta($postid, 'wpcr3_business_url', $new->business_url);
+			update_post_meta($postid, 'wpcr3_price_range', $new->price_range);
 		} else if ($new->type === "product") {
 			update_post_meta($postid, 'wpcr3_product_name', $meta->wpcr_product_name);
 			update_post_meta($postid, 'wpcr3_product_brand', $meta->wpcr_product_brand);

@@ -701,6 +701,12 @@ class WPCustomerReviewsAdmin3 extends WPCustomerReviews3
 						'desc' => 'ONE of the following formats: <b>asin:1234567890</b>, <b>isbn:1234567890</b>, <b>upc:1234567890123</b> , <b>sku:ABC123</b>, <b>mpn:ABC123</b>',
 						'id' => $this->prefix.'_product_id',
 						'type' => 'text'
+					),
+					array(
+						'name' => 'Price Range',
+						'desc' => 'Example: 50-100',
+						'id' => $this->prefix.'_price_range',
+						'type' => 'text'
 					)
 				)
 			);
