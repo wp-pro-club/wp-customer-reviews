@@ -495,11 +495,15 @@ class WPCustomerReviews3 {
 		$product_name = $this->get_meta_or_default($parentData, $this->prefix.'_product_name', $blog_name);
 		$parentData[$this->prefix.'_business_name'] = $business_name;
 		$parentData[$this->prefix.'_business_url'] = $blog_url;
-		$parentData[$this->prefix.'_price_range'] = $this->get_meta_or_default($parentData, $this->prefix.'_price_range', $blog_name);
+		$parentData[$this->prefix.'_price_range'] = $this->get_meta_or_default($parentData, $this->prefix.'_price_range', '');
 		$parentData[$this->prefix.'_product_name'] = $product_name;
 		
 		// todo: replace with provided image in future
-		$parentData[$this->prefix.'_business_image'] = $this->getpluginurl_abs() . 'css/1x1.png';
+		if ($image = $this->get_meta_or_default($parentData, $this->prefix.'_business_image', '')) {
+			$parentData[$this->prefix.'_business_image'] = $image;
+		} else {
+			$parentData[$this->prefix.'_business_image'] = $this->getpluginurl_abs() . 'css/1x1.png';
+		}
 		$parentData[$this->prefix.'_product_image'] = $this->getpluginurl_abs() . 'css/1x1.png';
 
 		return $parentData;

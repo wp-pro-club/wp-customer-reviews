@@ -707,6 +707,12 @@ class WPCustomerReviewsAdmin3 extends WPCustomerReviews3
 						'desc' => 'Example: 50-100',
 						'id' => $this->prefix.'_price_range',
 						'type' => 'text'
+					),
+					array(
+						'name' => 'Business Image URL',
+						'desc' => 'Example: http://example.com/image.jpg',
+						'id' => $this->prefix.'_business_image',
+						'type' => 'text'
 					)
 				)
 			);
